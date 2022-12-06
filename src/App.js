@@ -1,10 +1,11 @@
 
 import './App.css';
-import StarRating from './components/StarRating';
+import Users from './components/Users';
+
 function App() {
   return (
     <div className="App">
-      <StarRating totalStar={5}/>
+      <Users/>
     </div>
   );
 }
