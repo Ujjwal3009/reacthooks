@@ -1,36 +1,33 @@
-
-import { useReducer } from 'react';
+import { useRef } from 'react';
 import './App.css';
 
 
-const initialState = {
-  message:"hi"
-}
-
-function reducer(state,action){
-  switch(action.type){
-    case "YELL":
-      return {
-        message:`hello `
-      };
-    case "WHISPER":
-      return{
-        message:`excuse me `
-      };
-  }
-}
 
 function App() {
- 
+
+  const sound = useRef();
+  const color = useRef();
 
 
- const [state,dispatch] = useReducer(reducer,initialState);
+ function submit(e){
+    e.preventDefault();
+    const soundVal = sound.current.value;
+    const colorValue = color.current.value;
+    
+    alert(`${soundVal} sounds like ${colorValue}`);
+    sound.current.value ="";
+    color.current.value = "";
+ }
+
+
   return (
 
     <div className="App">
-      <h1 >message :{state.message}</h1>
-      <button onClick={()=>dispatch({type:"YELL"})}>Yell</button>
-      <button onClick={()=>dispatch({type:"WHISPER"})}>Whisper</button>
+     <form onSubmit={submit}>
+      <input ref={sound} type="input"/>
+      <input ref={color} type="color"/>
+      <button>ADD</button>
+     </form>
  
     </div>
   );
